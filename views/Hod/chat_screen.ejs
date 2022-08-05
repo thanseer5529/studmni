@@ -1,0 +1,122 @@
+<section id="body_content">
+    <h1 class="text-center m-3 bg-info rounded p-3" id="head">CHAT SCREEN</h1>
+
+    <div class="container">
+
+        <h2 class=" d-flex justify-content-center " id="Insti_name">
+            <%=data.plat%> >> <%=data.dept%>
+        </h2>
+
+        <div class="col-md-12   m-4">
+
+            <div class="col-sm-12  ">
+                <div class="col-sm-12 chat_area " id="chat_area">
+
+                    <!-- <div class="you">hi</div> -->
+                </div>
+                <div class="col-sm-12 chat_text p-2">
+                    <div class="form-row d-flex justify-content-center ">
+                        <div class="col-sm-10 ">
+                            <!-- <input type="text" class="form-control" id="chat_msg" name="chat_msg"                                    
+                                    placeholder="type your message"> -->
+                            <textarea cols="30" rows="2" id="chat_content"></textarea>
+
+                        </div>
+                        <div class="col-sm-2 d-flex justify-content-center  align-items-center">
+                            <input type="button" class="form-control  " id="msg_send" value="send">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<style>
+    .chat_text {
+        background: rgb(179, 108, 108);
+    }
+
+    #chat_content {
+        width: 100%
+    }
+
+    .chat_area {
+        max-height: 80vh;
+        height: 80vh;
+        border: 2px solid grey;
+        overflow: auto;
+        background-color: rgb(172, 172, 211);
+    }
+
+    #body_content {
+        margin: 5vh;
+
+
+    }
+</style>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+
+    let plat = "<%=header.data.data.Instit_Name%>"
+    let dept = "<%=header.data.data.Dept_Name%>"
+
+
+
+
+
+    let socket = io("http://localhost:5000");
+    let chat_area = document.getElementById("chat_area")
+    let chat_btn = document.getElementById("msg_send");
+    let chat_content = document.getElementById("chat_content")
+    let chat_file = document.getElementById("chat_file");
+    let hod = plat + "_hod_" + dept;
+    let user = plat + "_user_" + dept;
+    let room = plat + "_room_" + dept;
+
+    socket.emit("join_request", room)
+    socket.on("join_respond", (msg) => {
+
+        console.log(msg);
+    })
+    console.log("room :", room);
+    chat_btn.addEventListener("click", () => {
+        if (chat_content.value.length <= 0)
+            alert("there is no message to send")
+        else {
+
+            let data = "You  : " + chat_content.value
+            console.log(data);
+            // socket.emit(hod, chat_content.value, "hod")
+            socket.emit("hod_send",room,chat_content.value)
+            chat_content.value = "";
+            let elm = document.createElement("div")
+            elm.innerText = data
+            elm.classList.add("you")
+            chat_area.append(elm)
+        }
+    })
+
+    socket.on("student_receive", (data, who) => {
+        console.log("data", data);
+        console.log("who", who);
+        let elm = document.createElement("div")
+        elm.innerText = who + " : " + data;
+        elm.classList.add("other")
+        chat_area.append(elm)
+    })
+
+</script>
+
+<style>
+    .you {
+        text-align: right;
+    }
+</style>
+<!-- hod -->
+
+
+<script>
+
+
+
+</script>

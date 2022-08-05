@@ -1,0 +1,164 @@
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    header {
+        font-family: "Oswald", sans-serif;
+        font-size: 1rem;
+        min-height: 14vh;
+    }
+
+    input[type="text"],
+    [type="password"]::placeholder {
+        font-size: 0.8rem;
+    }
+
+    .warning {
+        font-style: italic;
+        color: rgb(197, 21, 21);
+        font-size: smaller;
+    }
+
+    .border {
+        border: 2px solid red;
+    }
+
+    .gradient-custom-2 {
+        /* fallback for old browsers */
+        background: #fccb90;
+
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to right, #ad927f, #b1a1a1, #e2d4da, #e7d3e1);
+
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        /* background: linear-gradient(to right, #b9b4b0, #dfc4c4, #e7c2d0, #dbb1cf); */
+        background: linear-gradient(rgba(1, 1, 1, 0.9), rgba(1, 1, 1, 0.9));
+    }
+
+    .content {
+        /* min-height: 150vh; */
+        display: grid;
+        place-items: center;
+        background: linear-gradient(rgba(185, 190, 196, 0.5), rgba(39, 22, 10, 0.5)), url("/images/index/background.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: right;
+        background-attachment: fixed;
+    }
+
+    .body {
+        opacity: 0.8;
+        margin: 5rem 0rem;
+    }
+
+    .radius {
+        border-radius: 2rem;
+    }
+
+    .btn-primary {
+        background: #007bff !important;
+        border-radius: 1rem;
+        /* box-shadow: 2rem 2rem 4rem 2rem rgb(136, 125, 125); */
+    }
+</style>
+<section class="content">
+    <div class="body">
+        <div class="col-lg-12 col-md-12 border gradient-custom-2 radius">
+            <div class="card-body p-md-5 mx-md-4">
+                <div class="text-center">
+                    <h4 class="mt-1 mb-5 pb-1">Welcome to Studmni</h4>
+                </div>
+                <form class="text-info" id="login_form">
+                    <div class="form-outline mb-4">
+                        <label class="form-label font-weight-bold">Institute name</label>
+                        <input type="text" id="Insti" class="form-control" placeholder="Enter Institute" name="Insti" />
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <label class="form-label font-weight-bold">Username</label>
+                        <input type="text" id="UserName" class="form-control" placeholder="Enter your Username"
+                            name="UserName" />
+                    </div>
+
+                    <div class="form-outline mb-2">
+                        <label class="form-label font-weight-bold">Password</label>
+                        <input type="password" id="Password" class="form-control" placeholder="Enter your Password"
+                            name="Password" />
+                    </div>
+                    <div class="form-outline mb-4">
+                        <label class="form-label font-weight-bold">Login as</label>
+                        <select class="form-control" name="Identity" id="Identity" aria-label="Default select example">
+                            <option selected>Choose</option>
+                            <option>Principal</option>
+                            <option>Hod</option>
+                            <option>User</option>
+                        </select>
+                    </div>
+                    <div class="form-outline mb-2">
+                        <label class="form-label font-weight-bold">Department</label>
+                        <input type="text" id="Dept" class="form-control" placeholder="Enter Department" name="Dept" />
+                    </div>
+                    <div class="text-center mb-5 pb-1">
+                        <input type="submit" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-4 mt-2"
+                            value="Login" id="login" />
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between pb-4">
+                        <p class="mb-0 me-2 for_btn text-success">Create a Platform -></p>
+                        <a href="/Create_platform">
+                            <button type="button" class="mr- btn btn-outline-primary p-1 ml-3">Create new</button>
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    var log_btn = document.getElementById("login");
+
+    log_btn.addEventListener("click", (evt) => {
+        evt.preventDefault();
+
+        let usr = document.getElementById("UserName").value;
+        let pass = document.getElementById("Password").value;
+        let idt = document.getElementById("Identity").value;
+        let dept = document.getElementById("Dept").value;
+        let insti = document.getElementById("Insti").value;
+        let login_form = document.getElementById("login_form");
+        if (usr != "" && pass != "" && idt != "Choose" && insti != "") {
+            if (idt == "Hod" && dept == "") alert("department is required");
+            else if (idt == "User" && dept == "") alert("department is required");
+            else {
+                login_data = new FormData(login_form);
+                $.ajax({
+                    url: "/starting",
+                    data: login_data,
+                    method: "post",
+                    success: (cb) => {
+                        if (cb.who == "principal") {
+                            alert(cb.who + " is going to login");
+                            window.location.href = "http://localhost:5000/principal/" + cb.instit;
+                        } else if (cb.who == "Hod") {
+                            alert(cb.who + " is going to login");
+                            window.location.href = "http://localhost:5000/Hod/" + cb.instit + "/" + cb.dept;
+                        }
+
+                        else if (cb.who == "User") {
+                            alert(cb.who + " is going to login");
+                            window.location.href = "http://localhost:5000/User/" + cb.instit + "/" + cb.dept + "/" + cb.candidate;
+                        }
+                        else {
+                            alert(cb);
+                        }
+                    },
+                    contentType: false,
+                    processData: false,
+                });
+            }
+        } else {
+            alert("fill the blank");
+        }
+    });
+</script>

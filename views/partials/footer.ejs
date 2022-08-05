@@ -1,0 +1,245 @@
+<footer class="pb-4 p-3">
+    <div class="pt-3">
+        <div class="row text-info">
+            <div class="col-md-6 col-12 pb-5">
+                <h5 class="text-success d-flex justify-content-center">Conatct Us</h5>
+                <div class="d-flex justify-content-center align-items-center h-100">
+                    <img src="/images/index/download.png" alt="image not available" srcset="" class="com_logo" />
+                    <span class="pl-2">WebBerry solution</span>
+                    <ul>
+                        <li><a href="https://wa.me/+919072577554" class="fa fa-whatsapp">&nbspWhatsApp</a></li>
+                        <li><a href="https://www.instagram.com/web.berry_/" class="fa fa-instagram">&nbspinstagram</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6 col-12 text-center pr-3">
+                <h5 class="text-success">Support Us</h5>
+                <div class="d-flex justify-content-center align-items-center">
+                    <form method="post" id="footer" action="/suggestion" enctype="multipart/form-data">
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label>Name</label>
+                            </div>
+                            <div class="form-group col-md-8">
+                                <input type="text" class="form-control brd" id="names" aria-describedby="emailHelp"
+                                    placeholder="Enter Name" name="name" required />
+                                <small id="err_msg"></small>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="exampleInputPassword1">Mobile</label>
+                            </div>
+                            <div class="form-group col-md-8">
+                                <input type="number" class="form-control brd" id="mobile" placeholder="Enter Mobile"
+                                    name="mobile" required />
+                                <small id="err_msg"></small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control brd" id="suggestion" rows="3" name="suggestion"
+                                placeholder="Your suggestion and commands..." maxlength="1500"></textarea>
+                            <small id="err_msg"></small>
+                        </div>
+                        <div class="form-row" id="prnt">
+                            <div class="form-group col-md-3">
+                                <label for="exampleInputPassword1">File</label>
+                            </div>
+                            <div class="form-group col-md-7">
+                                <input type="file" class="form-control brd" id="file0" placeholder="" name="file0" />
+                                <small id="err_msg"></small>
+                            </div>
+
+                            <div class="form-group col-md-2">
+                                <input type="button" value="+" id="fadd_btn" />
+                                <input type="button" value="-" id="fsub_btn" />
+                                <small id="err_msg"></small>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <button type="submit" class="btn btn-primary col-md-6 mx-auto" id="sbmt_btn">
+                                Submit
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<style>
+    footer {
+        background: linear-gradient(rgba(215, 224, 233, 0.5), rgba(43, 33, 68, 0.8));
+        /* position:absolute;
+        bottom: 0px;
+        left: 0px; */
+        width: 100%;
+    }
+
+    ul {
+        list-style-type: none;
+    }
+
+    .com_logo {
+        width: 5rem;
+        height: 5rem;
+        opacity: 0.7;
+        border-radius: 75%;
+    }
+
+    .brd {
+        border: none;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    #err_msg {
+        color: red;
+        font-style: italic;
+        font-size: 0.9rem;
+    }
+</style>
+<script>
+    function evt_set(element) {
+
+        element.addEventListener("change", (evt) => {
+            item = evt.target
+
+            if (item.files.length > 0) {
+                if (!(item.files[0]["type"].split("/")[0] == "image"))
+                    item.parentElement.querySelector("#err_msg").innerHTML = "choose a image file";
+                else item.parentElement.querySelector("#err_msg").innerHTML = "";
+            } else {
+                item.parentElement.querySelector("#err_msg").innerHTML = "";
+            }
+        });
+    }
+    '\n                                        <div class="form-group col-md-3">\n                                        \n                                        </div>\n                                        <div class="form-group col-md-7">\n                                            <input type="file" class="form-control brd" id="file" placeholder="" name="file">\n                                            <small id="err_msg"></small>\n                                        </div>\n';
+    let content1 = "\n                                    ";
+    let content2 =
+        '\n                                            <input type="file" class="form-control brd" id="file" placeholder="" name="file">\n                                            <small id="err_msg"></small>\n                                    ';
+    let prnt = document.getElementById("prnt");
+    let add_btn = document.getElementById("fadd_btn");
+    let sub_btn = document.getElementById("fsub_btn");
+    let namee = document.getElementById("names");
+    let mobile = document.getElementById("mobile");
+    let sugg = document.getElementById("suggestion");
+    let file = document.getElementById("file0");
+    let btn = document.getElementById("sbmt_btn");
+    namee.addEventListener("keyup", (item) => {
+        val = item.target;
+        if ((val.value.search("[a-zA-z]") > -1 && val.value.search("[0-9]") < 0 && val.value.length < 21) || val.value == "")
+            namee.parentElement.querySelector("#err_msg").innerHTML = "";
+        else namee.parentElement.querySelector("#err_msg").innerHTML = "length <= 20, number not allowed";
+    });
+    mobile.addEventListener("keyup", (item) => {
+        val = item.target;
+        if (val.value.length != 10 && val.value.length != 0)
+            mobile.parentElement.querySelector("#err_msg").innerHTML = `${val.value.length} length,`;
+        else mobile.parentElement.querySelector("#err_msg").innerHTML = "";
+    });
+    sugg.addEventListener("keyup", (item) => {
+        val = item.target;
+        if (val.value.length >= 1499) {
+            sugg.parentElement.querySelector("#err_msg").innerHTML = `reach maximum character 1500`;
+        } else {
+            sugg.parentElement.querySelector("#err_msg").innerHTML = "";
+        }
+    });
+    file.addEventListener("change", () => {
+        if (file.files.length > 0) {
+            if (!(file.files[0]["type"].split("/")[0] == "image"))
+                file.parentElement.querySelector("#err_msg").innerHTML = "choose a image file";
+            else file.parentElement.querySelector("#err_msg").innerHTML = "";
+        } else {
+            file.parentElement.querySelector("#err_msg").innerHTML = "";
+        }
+    });
+    btn.addEventListener("click", (evnt) => {
+
+
+
+
+        form = document.forms;
+        v1 = namee.value;
+        v2 = mobile.value;
+        v3 = sugg.value;
+        if (v1 == "" || v2 == "" || v3 == "") {
+            evnt.preventDefault();
+            alert("please fill the above fields");
+        } else {
+            errs = form[form.length - 1].querySelectorAll("#err_msg");
+            err = Array.from(errs).filter((item) => {
+                return item.innerHTML != "";
+            });
+            console.log(err);
+            if (err.length > 0) {
+                evnt.preventDefault();
+                alert("enter proper data to field");
+            }
+            else {
+                evnt.preventDefault();
+                des = document.querySelector("#footer")
+                let datas = new FormData(des);
+                $.ajax({
+                    url: "/Suggestion",
+                    data: datas,
+                    method: "post",
+                    success: (content) => {
+                        if (content.msg) {
+                            alert(content.msg)
+                        }
+                        else {
+                            alert(" your input has been processed")
+                            src = document.getElementById("footer").querySelectorAll('[name]')
+                            for (let i = 0; i < src.length; i++) {
+                                src[i].value = ""
+                            }
+                        }
+                    },
+                    contentType: false,
+                    processData: false,
+                })
+
+            }
+        }
+
+    });
+
+
+
+
+
+    add_btn.addEventListener("click", () => {
+        let element1 = document.createElement("div");
+        files = prnt.querySelectorAll("[type=file]");
+        element1.innerHTML = content1;
+        element1.classList.add("form-group", "col-md-3");
+        let element2 = document.createElement("div");
+        element2.innerHTML = content2;
+        element2.classList.add("form-group", "col-md-7");
+        a = element2;
+        element2.querySelector("#file").name += files.length;
+        element2.querySelector("#file").id += files.length;
+        prnt.appendChild(element1);
+        prnt.appendChild(element2);
+        a = element2.querySelector("#file" + files.length);
+
+        evt_set(element2.querySelector("#file" + files.length));
+    });
+    sub_btn.addEventListener("click", () => {
+        files = prnt.querySelectorAll("[type=file]");
+        if (files.length > 1) {
+            divs = document.querySelector("#prnt").querySelectorAll("div")
+            divs[divs.length - 1].remove()
+            divs[divs.length - 2].remove()
+        }
+
+    })
+</script>

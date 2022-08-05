@@ -1,0 +1,326 @@
+<section>
+    <h1 class="text-center m-3 bg-info rounded p-3" id="head">PROFILE</h1>
+
+    <div class="container  mt-5">
+        <div class="m-2 row-cols-1 row row-cols-sm-1 row-cols-md-12 g-4
+            justify-content-center">
+            <h2 class=" d-flex justify-content-center " id="Insti_name">
+                <%=data.data.Instit_Name%> >> <%=data.data.Dept_Name%>
+
+            </h2>
+
+            <form class="border border-info p-4" id="Dept_form">
+                <div class="form-row m-2">
+                    <div class="form-group col-md-5">
+                        <label for="">Department Name</label>
+                        <input type="text" class="form-control inp" id="Dept_Name" name="Dept_Name" disabled value="ct"
+                            value="<%=data.data.Dept_Name%>">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Department Password</label>
+                        <input type="text" class="form-control" id="Dept_Password" name="Dept_Password"
+                            placeholder="Institution Password" value="<%=data.data.Dept_password%>">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="">&nbsp</label>
+
+                        <% let a=data.data.Instit_Name%>
+                            <% let b=data.data.Dept_Name%>
+                                <button class="btn btn-primary d-flex mx-auto" id="change_btn">Change</button>
+
+                    </div>
+                </div>
+                <div class="form-row m-2">
+                    <div class="form-group col-md-6">
+                        <div class="form-row m-2">
+                            <div class="form-group col-md-6">
+                                <label>Roll Start</label>
+                                <input type="number" class="form-control" id="std_roll_start" name="std_roll_start"
+                                    placeholder="roll starts from">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Roll End</label>
+                                <input type="number" class="form-control" id="std_roll_end" name="std_roll_end"
+                                    placeholder="roll ends in">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <div class="form-row m-2">
+                            <div class="form-group col-md-7">
+                                <label>None of list</label>
+                                <input type="text" class="form-control" id="std_nones" name="std_nones"
+                                    placeholder="Rolls List" title="none candidate roll list (seperate each by ,)">
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label for="">&nbsp</label>
+                                <select class="form-select form-control" aria-label="Default select example" id="who">
+                                    <option selectd value="student">Student</option>
+                                    <option value="alumini">Alumni</option>
+                                </select>
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <button class="btn btn-success d-flex mx-auto" id="std_make">Make</button>
+
+                </div>
+            </form>
+            <div class="form-row m-2 mt-5">
+                <form id="std_form" class=" col-md-12 border border-success">
+                    <div class="form-group col-md-12">
+                        <div class="form-row m-2 edit">
+                            <h2 class=" d-flex justify-content-center text-center form-control">CANDIDATES</h2>
+                            <table class="table" id="student_table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Reg_NO</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Verified</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Mobile</th>
+                                        <th scope="col">candidate</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody id="t_body">
+
+                                    <% for(let i=0;i<data.data.Students.length;i++) {%>
+                                        <tr>
+                                            <th scope="col">
+                                                <%=i+1%>
+                                            </th>
+                                            <th scope="col" id="std_Reg_No">
+                                                <%=data.data.Students[i].reg_no%>
+                                            </th>
+                                            <th scope="col">
+                                                <%=data.data.Students[i].name%>
+                                            </th>
+                                            <th scope="col">
+                                                <%=data.data.Students[i].verified%>
+                                            </th>
+                                            <th scope="col">
+                                                <%=data.data.Students[i].status%>
+                                            </th>
+                                            <th scope="col">
+                                                <%=data.data.Students[i].mobile%>
+                                            </th>
+                                            <th scope="col">
+                                                <%=data.data.Students[i].candidate%>
+                                            </th>
+
+                                        </tr>
+                                        <%}%>
+                                </tbody>
+                            </table>
+                            <button type="submit" class="btn btn-primary d-flex mx-auto mt-5 w-50 "
+                                id="std_btn">Finish</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+</section>
+
+
+<script>
+
+    j = 1;
+    let insti = document.getElementById("Insti_name")
+    let dept_name = document.getElementById("Dept_Name")
+    let who = document.getElementById("who");
+    let std_btn = document.getElementById("std_btn")
+    let tr = document.getElementsByClassName("tr")
+    let std_make = document.getElementById("std_make")
+    let t_body = document.getElementById("t_body");
+    let change_btn = document.getElementById("change_btn")
+    var ins = '<%-data.data.Instit_Name%>';
+    var dp = '<%-data.data.Dept_Name%>';
+
+
+  
+
+
+
+
+    std_make.addEventListener("click", (evt) => {
+        evt.preventDefault()
+        var std_start = document.getElementById("std_roll_start")
+        var std_end = document.getElementById("std_roll_end")
+        var std_nones = document.getElementById("std_nones")
+        s_arr = std_start.value.match(/[^0-9]/g)
+        e_arr = std_end.value.match(/[^0-9]/g)
+        let regs = Array.from(document.querySelectorAll("#std_Reg_No"));
+
+        if (s_arr != null || std_start.value == "") {
+            alert("enter Roll-Start properly")
+            std_start.focus()
+        }
+        else if (e_arr != null || std_end.value == "") {
+            alert("enter Roll-End properly")
+            std_end.focus()
+        }
+        else if (Number(std_start.value) > Number(std_end.value)) {
+            alert("Roll-number should be set from start to end")
+            std_start.focus()
+        }
+
+        else {
+            var std_content = [];
+
+            for (let i = Number(std_start.value); i <= Number(std_end.value); i++)
+                std_content.push(i);
+
+            var std_arr = std_nones.value.split(",");
+            let err = false
+            for (i of std_arr) {  // '101'
+                let status = Number(i); // 101
+                if (isNaN(status)) {
+                    alert("please enter candidate roll-number none list properly ( " + i + " )")
+                    err = true
+                    break;
+                }
+                else if (Number(i) > Number(std_end.value) || Number(i) < Number(std_start.value) && i != "") {
+                    alert(i + " is not in the Roll number range")
+                    err = true
+                    break;
+                }
+            }
+            if (!err) {
+                console.log("ok");
+                regs.forEach((el) => {
+                    std_arr.push(el.innerText)
+                })
+                console.log(std_arr);
+                console.log(std_content);
+                let si_no = t_body.childElementCount
+                std_content.forEach((el) => {
+                    if (!std_arr.includes(el.toString())) {
+                        si_no++
+                        let std_html = '                            <tr class="tr">                                <th scope="row" id="Std_Count">' + si_no + '</th>                                <td id="std_Reg_No" class="regno">' + el + '</td>                                <td id="std_Name"></td>                              <td id="std_Status"></td>         <td id="std_Status"></td>                                <td id="std_Mobile"></td>                                           <td id="std_Candidate">' + who.value + '</td>                </tr>'
+                        t_body.innerHTML += std_html;
+                    }
+                })
+                std_start.value = ""
+                std_end.value = ""
+                std_nones.value = ""
+
+            }
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+    })
+
+
+
+
+
+
+
+
+    std_btn.addEventListener('click', (evt) => {
+        evt.preventDefault()
+        cnd_data = [];
+        for (let i = 0; i < tr.length; i++) {
+            items = {}
+            items.reg_no = tr[i].querySelector("#std_Reg_No").innerHTML;
+            items.name = tr[i].querySelector("#std_Name").innerHTML;
+            items.status = tr[i].querySelector("#std_Status").innerHTML;
+            items.mobile = tr[i].querySelector("#std_Mobile").innerHTML;
+            items.candidate = tr[i].querySelector("#std_Candidate").innerHTML;
+            items.password = items.reg_no
+            items.verified = false;
+            cnd_data.push(items);
+        }
+        $.ajax({
+            url: "/Hod/add_candidates/" + ins + "/" + dp,
+            method: "post",
+            data:
+            {
+                cnd_data
+            }
+            ,
+            success: (cb) => {
+                if (cb.err) {
+                    window.location.href = "http://localhost:5000";
+                }
+                else if (cb.message) {
+                    alert(cb.message)
+                }
+                else {
+                    alert(cb)
+                    location.reload()
+                }
+
+            },
+        })
+    })
+
+    change_btn.addEventListener("click", (evt) => {
+        evt.preventDefault()
+        let pass = document.getElementById("Dept_Password").value
+        let dept = document.getElementById("Dept_Password").value
+        if (dept == "" || pass == "") {
+            alert("fill the blanks")
+        }
+        else {
+            $.ajax({
+                url: "/Hod/change_pass/" + ins + "/" + dp,
+                method: "post",
+                data: {
+                    pass: pass
+                },
+                success: (cb) => {
+                    if (cb.err) {
+                        window.location.href = "http://localhost:5000";
+                    }
+                    else if (cb.message) {
+                        alert(cb.message)
+                    }
+                    else {
+                        alert("password changed")
+                        window.location.reload()
+                    }
+                }
+            })
+        }
+    })
+
+
+
+
+</script>
+<style>
+    .table {
+        max-height: 500px;
+        height: 350px;
+        overflow: hidden;
+    }
+
+    .edit {
+        max-height: 100vh;
+        overflow-y: scroll;
+        padding: 2rem 0rem;
+    }
+
+    #std_btn {
+        display: flex;
+
+        justify-content: center;
+    }
+</style>

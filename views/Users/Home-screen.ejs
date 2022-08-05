@@ -1,0 +1,135 @@
+<section>
+    <h1 class="text-center m-3 bg-info rounded p-3" id="head">PROFILE</h1>
+    <div class="container  mt-5">
+        <div class="m-2 row-cols-1 row row-cols-sm-1 row-cols-md-12 g-4
+            justify-content-center">
+            <h3 class=" d-flex justify-content-center " id="Insti_name">
+
+                <%=data.data[1].Insti_Name%> >> <%=data.data[1].Dept%> >> <%=data.data[0].reg_no%>
+            </h3>
+
+            <form class="border border-info p-4" id="Dept_form">
+                <div class="form-row m-2">
+                    <div class="form-group col-md-4">
+                        <label for="">Institution Name</label>
+                        <input type="text" class="form-control inp" disabled value="aknm"
+                            value="<%=data.data[1].Insti_Name%>">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="">Department Name</label>
+                        <input type="text" class="form-control inp" disabled value="<%=data.data[1].Dept%>">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Candidate Password</label>
+                        <input type="text" class="form-control" id="Dept_Password" name="Dept_Password"
+                            placeholder="Institution Password" value="<%=data.data[0].password%>">
+                    </div>
+
+                </div>
+
+                <div class="form-row m-2 ">
+                    <div class="form-group col-md-6 d-flex justify-content-center ">
+                        <label>REG_NO</label>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="number" class="form-control" disabled value="<%=data.data[0].reg_no%>">
+                    </div>
+                </div>
+
+                <div class="form-row m-2">
+                    <div class="form-group col-md-6 d-flex justify-content-center">
+                        <label>NAME</label>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="text" class="form-control" id="cnd_name" name="cnd_name"
+                            placeholder="enter your name" value="<%=data.data[0].name%>">
+                    </div>
+                </div>
+
+
+                <div class="form-row m-2">
+                    <div class="form-group col-md-6 d-flex justify-content-center">
+                        <label>STATUS</label>
+                    </div>
+                    <div class="form-group col-md-6">
+
+                        <textarea name="cnd_status" id="cnd_status" style="width:100%; height: 10vh;"
+                            placeholder="enter your current status"><%=data.data[0].status%></textarea> </textarea>
+                    </div>
+                </div>
+                <div class="form-row m-2">
+                    <div class="form-group col-md-6 d-flex justify-content-center">
+                        <label>MOBILE</label>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="number" class="form-control" id="cnd_mobile" name="cnd_number"
+                            placeholder="enter your mobile number" value="<%=data.data[0].mobile%>">
+                    </div>
+                </div>
+                <div class="form-row m-2">
+                    <div class="form-group col-md-6 d-flex justify-content-center">
+                        <label>LOGED AS</label>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="text" class="form-control" value="<%=data.data[0].candidate%>" disabled>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <button class="btn btn-success d-flex mx-auto mb-5" id="cnd_make">Make</button>
+
+    </div>
+    </form>
+    </div>
+</section>
+<style>
+    #cnd_btn {
+        display: flex;
+
+        justify-content: center;
+    }
+</style>
+
+
+<script>
+    let plat = "<%-data.data[1].Insti_Name%>"
+    let dept = "<%-data.data[1].Dept%>"
+    let user = "<%-data.data[0].reg_no%>"
+    let room = plat + "_room_" + dept;
+  
+
+
+    let cnd_btn = document.getElementById("cnd_make");
+    cnd_btn.addEventListener("click", (evt) => {
+        evt.preventDefault()
+        data = {
+            name: document.getElementById("cnd_name").value,
+            status: document.getElementById("cnd_status").value,
+            mobile: document.getElementById("cnd_mobile").value,
+            password: document.getElementById("Dept_Password").value
+        }
+        if (data.name == "")
+            alert("enter your name");
+
+        else if (data.status == "")
+            alert("enter your current status")
+        else if (data.mobile.length < 10 || data.mobile.length > 10)
+            alert("enter mobile number properly")
+        else {
+            $.ajax({
+                url: "/user/update/" + plat + "/" + dept + "/" + user,
+                method: "post",
+                data: data,
+                success: (cb => {
+                    if (cb.err) {
+                        alert(cb.err)
+                    }
+                    else if (cb.mes) {
+                        alert(cb.mes)
+                        window.location.reload();
+                    }
+                })
+            })
+        }
+    })
+</script>

@@ -1,0 +1,22 @@
+<section>
+    <div class="container mt-4">
+      <div class="m-2 row row-col-sm-1 row-col-md-4   g-4  justify-content-center">
+  
+
+          <% for(let i=0;i<data.length;i++) { %>
+            <div class="card m-2 d-flex justify-content-center text-justify" style="width: 18rem; height: 25rem;">
+              <img src="/images/index/departments.jpg" class="card-img-top" alt="image is not available"
+                style="height: 13rem; ">
+              <div class="card-body text-justify">
+                <p class="card-tithle text-center"><%=data[i].name%></p>             
+                <div class="d-flex justify-content-center">
+                  <a href="/Principal/students/<%=data[i].name%>/<%=name%>" class="btn btn-primary m-1">Students</a>
+                  <a href="/Principal/alumnis/<%=data[i].name%>/<%=name%>" class="btn btn-primary m-1 ">Alumnis</a>
+                </div>
+              </div>
+            </div> 
+        <%}%>      
+      </div>    
+    </div>
+  </section>
+      

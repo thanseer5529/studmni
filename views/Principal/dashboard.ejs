@@ -1,0 +1,202 @@
+<section id="body_content">
+    <div class="container">
+        <h2 class=" d-flex justify-content-center " id="Insti_name">
+            <%=data.name%>
+        </h2>
+        <div class="col-md-12   m-4">
+            <div class="col-sm-12 ">
+                <div class="col-sm-12  bg-info text-white" id="chat_area ">
+
+
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-12   m-4">
+            <a href="#inbox" style="text-decoration: none; display: inline-block;">
+                <button class="btn btn-info d-flex mb-2 ">inbox</button>
+
+            </a>
+            <form class="border border-info p-4" id="Dept_form">
+                <div class="form-row m-2">
+                    <div class="form-group col-md-6">
+                        <label for="">Institution name</label>
+                        <input type="text" class="form-control inp" id="Dept_Name" name="Dept_Name" disabled
+                            value="<%=data.name%>">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label> Title</label>
+                        <input type="text" class="form-control" id="msg_title" name="msg_title"
+                            placeholder="title of the message">
+                    </div>
+                </div>
+                <div class="form-row m-2">
+                    <div class="form-group col-md-3">
+                        <div class="form-row m-2">
+                            <label for="">To</label>
+                            <select class="form-select form-control" id="who" name="who">
+                                <% for(let i=0;i<data.dept.length;i++) {%>
+                                    <option value="<%=data.dept[i]%>">
+                                        <%=data.dept[i]%>
+                                    </option>
+                                    <%}%>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-9">
+
+                        <div class="form-row m-2">
+                            <label>file</label>
+                            <input type="file" class="form-control" id="dash_msg_file" name="dash_msg_file">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row m-2">
+                    <div class="form-group col-md-12">
+
+                        <textarea id="dash_msg" name="dash_msg1" rows="5"></textarea>
+                    </div>
+                </div>
+                <button class="btn btn-success d-flex mx-auto" id="dash_make">Make</button>
+            </form>
+
+        </div>
+        <div id="inbox" class="col-md-12   m-4">
+
+
+
+            <div class="border border-secondary p-4" id="Dept_form">
+                <%for(let i=dash_smg.length-1;i>=0;i--) {%>
+
+                    <div class="border border-warning p-4 m-2" id="Dept_form">
+
+                        <div class="card m-2 ">
+                            <% if(dash_smg[i].image_name) {%>
+
+                                <a href="http://localhost:5000/dash_file/principal/<%=dash_smg[i].image_name%>" download
+                                    style="display: inline-block;">
+                                    <br>
+                                    <%=dash_smg[i].image_name%>
+                                </a>
+                                <%}%>
+                                    <div class="card-body">
+                                        <h5 class="card-title  d-flex justify-content-center ">
+                                           Title: <%=dash_smg[i].msg_title%>
+                                        </h5>
+                                        <p class="card-text"> FROM: <%=dash_smg[i].author%>
+                                        </p>
+                                        <p class="card-text">
+                                           Message: <%=dash_smg[i].dash_msg%>
+                                        </p>
+                                    </div>
+                        </div>
+                    </div>
+
+                    <%}%>
+                        <a href="#body_content" style="text-decoration: none; display: inline-block" ;>
+                            <button class="btn btn-info d-flex mb-2 ">^</button>
+                        </a>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+
+</section>
+
+<style>
+    .chat_content {
+
+        background: rgb(59, 104, 69);
+    }
+
+    /* .chat_heading {
+        height: 5vh;
+        background: rgb(192, 192, 154);
+    } */
+
+
+    #chat_area {
+        border: 2px solid grey;
+        max-height: 70vh;
+        height: 70vh;
+        overflow: auto;
+
+
+    }
+
+    #body_content {
+        margin: 5vh;
+        min-height: 85vh;
+
+    }
+
+    #dash_msg {
+        width: 100%;
+
+    }
+
+    #img {
+        height: 50%;
+    }
+
+    #dl {
+        width: 100px;
+        height: 100px;
+        background: red;
+    }
+</style>
+
+
+<script>
+    let dash_btn = document.getElementById("dash_make")
+    let dept = document.getElementById("who")
+    let plat = '<%=data.name%>'
+    let form = document.getElementById("Dept_form")
+    let msg_title = document.getElementById("msg_title")
+    let msg_content = document.getElementById("dash_msg")
+    let msg_file = document.getElementById("dash_msg_file")
+
+    dash_btn.addEventListener("click", (evt) => {
+        evt.preventDefault()
+        if (msg_title.value == "")
+            alert("message title required");
+        else if (msg_file.value == "" && msg_content.value == "")
+
+            alert("either image or message is required")
+        else {
+            let data = new FormData(form)
+            $.ajax({
+                url: "/principal/Dashboard/" + plat,
+                data: data,
+                method: "post",
+                success: (cb) => {
+                    console.log(cb);
+                    if (cb) {
+                        alert("message could not send")
+                    }
+                    else {
+                        alert("success")
+                        msg_title.value=msg_content.value=msg_file.value=""
+
+                    }
+                },
+                contentType: false,
+                processData: false,
+
+            })
+
+        }
+
+    })
+</script>

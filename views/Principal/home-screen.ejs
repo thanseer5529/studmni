@@ -1,0 +1,61 @@
+<section id="sec">
+    <div class="container mt-5">
+
+        <div class="row m-2">
+            <div class="col-md-4 col-8 d-flex mx-auto">
+                <img src="/images/platform/<%=data.data.Instit_Name%>.jpg" class="card-img-top rounded-circle"
+                    alt="image is not available" />
+            </div>
+            <div class="col-md-8 ">
+                <div class="row d-flex mx-auto">
+                    <div class="col-sm-3">Name:-</div>
+                    <div class="col-sm-9">
+                        <%=data.data.Instit_Name%>
+                    </div>
+                </div>
+                <div class="row d-flex mx-auto">
+                    <div class="col-sm-3">Vision:-</div>
+                    <div class="col-sm-9">
+                        <%=data.data.Vison%>
+                    </div>
+                </div>
+                <div class="row d-flex mx-auto">
+                    <div class="col-sm-3">Mission:-</div>
+                    <div class="col-sm-9">
+                        <%=data.data.Mission%>
+                    </div>
+                </div>
+
+                <div class="row d-flex mx-auto">
+                    <div class="col-sm-3">Address:-</div>
+                    <div class="col-sm-9">
+                        <%=data.data.Country%> <br />
+                            <%=data.data.State%><br />
+                                <%=data.data.Pin%>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 mt-5">
+                <div class="row">
+                    <a href="/principal/dept/<%=data.data.Instit_Name%>" class=" d-flex mx-auto">
+                        <button type="button" class="mr- btn btn-primary p-1 ml-3">Departments</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+<style>
+    .w {
+        background-color: yellow;
+    }
+
+    .e {
+        background-color: red;
+    }
+
+    #sec {
+        min-height: 50vh;
+    }
+</style>

@@ -1,0 +1,47 @@
+<section class="prnci_student mt-4">
+  <div class="container ">
+
+    <form id="std_form" class=" col-md-12 border border-success">
+      <div class="form-group col-md-12">
+        <div class="form-row m-2">
+          <h2 class=" d-flex justify-content-center text-center form-control">CANDIDATES</h2>
+          <table class="table" id="student_table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Reg_NO</th>
+                <th scope="col">Name</th>
+                <th scope="col">Status</th>
+                <th scope="col">Mobile</th>
+                <th scope="col">candidate</th>
+                <th scope="col">Verified</th>
+              </tr>
+            </thead>
+            <tbody id="t_body">
+              <% for(let i=0;i<data.length;i++) {%>
+              <tr>
+                <th scope="col"><%=i+1%></th>
+                <th scope="col"><%=data[i].reg_no%></th>
+                <th scope="col"><%=data[i].name%></th>
+                <th scope="col"><%=data[i].status%></th>
+                <th scope="col"><%=data[i].mobile%></th>
+                <th scope="col"><%=data[i].candidate%></th>
+                <th scope="col"><%=data[i].verified%></th>
+              </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<style>
+  .prnci_student{    
+    min-height: 80vh;
+  }
+</style>
+
+<script>
+</script>

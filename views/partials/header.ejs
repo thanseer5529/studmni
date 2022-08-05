@@ -1,0 +1,97 @@
+<header class="bg-light pt-2">
+    <div class="container">
+        <div class="row align-items-center mt-3">
+            <div class="col-6">
+                <img src="/images/layouts/company_logo.jpeg" alt="" srcset="" class="logo_img" />
+            </div>
+            <div class="col-6">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <button
+                        class="navbar-toggler ml-auto"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                    >
+                        <span class="navbar-toggler-icon align-items-center"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ml-auto pr-3">
+                            <li class="nav-item ml-auto">
+                                <a class="nav-link" href="/">HOME <span class="sr-only"></span></a>
+                            </li>
+                            <li class="nav-item ml-auto">
+                                <a class="nav-link " href="/About">About</a>
+                            </li>
+                            <li class="nav-item ml-auto">
+                                <a class="nav-link " href="/Info">Info</a>
+                            </li>
+
+                            
+                                <% if(locals.header) {%> <% if(locals.header.who=="principal") {%>
+
+                                <li class="nav-item ml-auto bg-success rounded mr-2 mt-4" >
+                                    <a class="nav-link p-2 pr-3 pl-3" href="/principal/Dashboard/<%=header.data%>">Dashboard</a>
+                                </li>
+
+                                <li class="nav-item ml-auto bg-success rounded mr-2 mt-4">
+                                    <a class="nav-link p-2 pr-3 pl-3" href="/principal/<%=header.data%>">Platform</a>
+                                </li>
+
+                                <li class="nav-item ml-auto bg-success rounded mr-2 mt-4">
+                                    <a class="nav-link p-2 pr-3 pl-3" href="/principal/profile/<%=header.data%>">Profile</a>
+                                </li>
+                                <%}%> 
+                                
+                                <% if(locals.header.who=="hod") {%>
+
+                                    <li class="nav-item ml-auto bg-success rounded mr-2 mt-4" >
+                                        <a class="nav-link p-2 pr-3 pl-3" href="/hod/Dashboard/<%=header.data.data.Instit_Name%>/<%=header.data.data.Dept_Name%>" >Dashboard</a>
+                                    </li>
+
+                                    <li class="nav-item ml-auto bg-success rounded mr-2 mt-4" >
+                                        <a class="nav-link p-2 pr-3 pl-3" href="/hod/chat/<%=header.data.data.Instit_Name%>/<%=header.data.data.Dept_Name%>">Chat</a>
+                                    </li>
+
+                                    <li class="nav-item ml-auto bg-success rounded mr-2 mt-4" >
+                                        <a class="nav-link p-2 pr-3 pl-3" href="/hod/<%=header.data.data.Instit_Name%>/<%=header.data.data.Dept_Name%>">Profile</a>
+                                    </li>
+
+
+
+                                    <%}%> 
+
+                                
+
+                                    <% if(locals.header.who=="user") {%>
+                                        <li class="nav-item ml-auto bg-success rounded mr-2 mt-4" >
+                                            <a class="nav-link p-2 pr-3 pl-3" href="/user/<%=header.data.plat%>/<%=header.data.dept%>/<%=header.data.candidate%>">Chat</a>
+                                        </li>
+    
+                                        <li class="nav-item ml-auto bg-success rounded mr-2 mt-4" >
+                                            <a class="nav-link p-2 pr-3 pl-3" href="/user/dashboard/<%=header.data.plat%>/<%=header.data.dept%>/<%=header.data.candidate%>" >Dashboard</a>
+                                        </li>
+    
+                                        <li class="nav-item ml-auto bg-success rounded mr-2 mt-4" >
+                                            <a class="nav-link p-2 pr-3 pl-3" href="/user/profile/<%=header.data.plat%>/<%=header.data.dept%>/<%=header.data.candidate%>">Profile</a>
+                                        </li>                       
+                                        <%}%> 
+                                
+                                <%}%>
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<style>
+    .logo_img {
+        width: 5rem;
+        height: 5rem;
+        box-shadow: 1px 1px 400px 70px rgb(212, 205, 205);
+    }
+</style>

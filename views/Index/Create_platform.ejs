@@ -1,0 +1,491 @@
+<section class="content">
+    <div class="container">
+        <div class="row p-5">
+
+            <form method="post" action="/Create_platform" class="border border-info" enctype="multipart/form-data"
+                id="platform_form">
+                <div class="form-row m-2">
+                    <div class="form-group col-md-6">
+                        <label for="">Institution Name</label>
+                        <input type="text" class="form-control inp" id="name" name="Instit_Name"
+                            placeholder="Enter  Institution Name" required>
+                        <small id="err_msg" class="text-align-center"></small>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Institution Image</label>
+                        <input type="file" class="form-control" id="image" name="Instit_Image"
+                            placeholder="Choose  Institution Image">
+                        <small id="err_msg" class="text-align-center" required></small></small>
+                    </div>
+                </div>
+                <div class="form-group m-2">
+                    <label>Institution Address</label>
+                    <div class="form-row">
+                        <div class="form-group col-md-3 ">
+                            <label>Country</label>
+                            <input type="text" class="form-control inp" required id="Country" name="Country"
+                                placeholder="Enter Country">
+                            <small id="err_msg" class="text-align-center"></small>
+                        </div>
+                        <div class="form-group col-md-3 ">
+                            <label>State</label>
+                            <input type="text" class="form-control inp" id="State" name="State"
+                                placeholder="Enter State" required>
+                            <small id="err_msg" class="text-align-center"></small>
+                        </div>
+                        <div class="form-group col-md-3 ">
+                            <label>City</label>
+                            <input type="text" class="form-control inp" id="City" name="City" placeholder="Enter City"
+                                required>
+                            <small id="err_msg" class="text-align-center"></small>
+                        </div>
+                        <div class="form-group col-md-3 ">
+                            <label>PIN</label>
+                            <input type="number" class="form-control inp" id="Pin" name="Pin" placeholder="Enter PIN"
+                                required>
+                            <small id="err_msg" class="text-align-center"></small>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row m-2">
+                    <label>Department</label>
+                    <div class="form-group col-md-11 border border-dark p-2 prnt">
+                        <div class="form-row  dept">
+                            <div class="form-group col-md-2">
+                                <label>NO:</label>
+                                <input type="number" class="form-control " required name="No" id="No" value=1 disabled>
+                            </div>
+                            <div class="form-group col-md-4 ">
+                                <label>Department </label>
+                                <input type="text" class="form-control inp" required id="Dept_Name0" name="Dept_Name0"
+                                    placeholder="Department Name">
+                                <small id="err_msg" class="text-align-center"></small>
+                            </div>
+                            <div class="form-group col-md-4 ">
+                                <label>UserName</label>
+                                <input type="text" class="form-control inp" required id="Dept_Username0"
+                                    name="Dept_Username0" placeholder="UserName of Incharge">
+                                <small id="err_msg" class="text-align-center"></small>
+                            </div>
+                            <div class="form-group col-md-2 ">
+                                <label>Password</label>
+                                <input type="password" class="form-control inp" required id="Dept_password0"
+                                    name="Dept_password0" placeholder="Password">
+                                <small id="err_msg" class="text-align-center"></small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-1">
+                        <button class="form-control mb-1" id="add_btn">+</button>
+                        <button class="form-control" id="sub_btn">-</button>
+
+                    </div>
+                </div>
+                <div class="form-row m-2">
+                    <div class="form-group col-md-12">
+                        <label for="exampleFormControlTextarea1">About Institution</label>
+                        <textarea class="form-control inp" id="desc" required
+                            placeholder="Description About Institution" rows="3" name="desc"></textarea>
+                        <small id="err_msg" class="text-align-center"></small>
+                    </div>
+                </div>
+                <div class="form-row m-2">
+                    <div class="form-group col-md-6">
+                        <label for="exampleFormControlTextarea1">Vision</label>
+                        <textarea class="form-control inp" required placeholder="Vision of  Institution" name="Vison"
+                            id="Vision" rows="3"></textarea>
+                        <small id="err_msg" class="text-align-center"></small>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="exampleFormControlTextarea1">Mission</label>
+                        <textarea class="form-control inp" required placeholder="Mission of  Institution" rows="3"
+                            name="Mission" id="Mission"></textarea>
+                        <small id="err_msg" class="text-align-center"></small>
+                    </div>
+                </div>
+                <div class="form-row m-2">
+                    <div class="form-group col-md-12  border border-dark p-2">
+                        <label for="">Set Authenticy</label>
+                        <div class="form-row m-2">
+                            <div class="form-group col-md-6">
+                                <label for="exampleFormControlTextarea1">UserName</label>
+                                <input type="text" class="form-control inp" required id="Username" name="Username"
+                                    placeholder="Enter Username">
+                                <small id="err_msg" class="text-align-center"></small>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="exampleFormControlTextarea1">Email</label>
+                                <input type="email" class="form-control inp" required id="email" name="email"
+                                    placeholder="Enter Gmail">
+                                <small id="err_msg" class="text-align-center"></small>
+                            </div>
+                        </div>
+                        <div class="form-row m-2">
+                            <div class="form-group col-md-6">
+                                <label for="exampleFormControlTextarea1">Password</label>
+                                <input type="password" class="form-control inp" required id="Password" name="password"
+                                    placeholder="Enter Password">
+                                <!-- input type make password -->
+                                <small id="err_msg" class="text-align-center"></small>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="exampleFormControlTextarea1">re-type Password</label>
+                                <input type="password" class="form-control inp" required id="Password2" name="password2"
+                                    placeholder="Verify Password"> <!-- input type make password -->
+                                <small id="err_msg" class="text-align-center"></small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary d-flex mx-auto" id="signup_btn">Sign
+                    Up</button>
+            </form>
+        </div>
+    </div>
+</section>
+<script>
+    let email = document.getElementById("email")
+    let inp = document.getElementsByClassName("inp")
+    for (i = 0; i < inp.length; i++)
+        inp[i].removeAttribute("required")
+    th = document.getElementById("image")
+    th.addEventListener("change", (event) => {
+        if (th.files.length > 0) {
+            if (th.files[0]['type'].split('/')[0] == "image") {
+                th.parentElement.querySelector("#err_msg").innerHTML = "";
+                signup_status()
+            }
+            else {
+                th.parentElement.querySelector("#err_msg").innerHTML = "check whether image or not";
+                signup_status()
+                th.focus()
+            }
+        }
+        else
+            th.parentElement.querySelector("#err_msg").innerHTML = "";
+    })
+    signup = document.getElementById("signup_btn")
+    function signup_status() {
+        errors = document.querySelectorAll("#err_msg")
+        error = Array.from(errors).filter((val => {
+            return val.innerHTML != "";
+        }))
+        if (error.length > 0) {
+
+            signup.setAttribute("disabled", "disabled");
+        }
+        else {
+            signup.removeAttribute("disabled");
+        }
+    }
+    function set_evt(dept) {
+
+        dept[dept.length - 1].querySelector("#Dept_password" + (dept.length - 1)).addEventListener("keyup", (evt) => {
+            if (evt.target.value.length < 8 && evt.target.value.length != 0) {
+                evt.target.parentElement.querySelector("#err_msg").innerHTML = "password must has minimum 8 charecter";
+                signup_status()
+            }
+            if (evt.target.value.includes(" ")) {
+                evt.target.value = evt.target.value.replaceAll(" ", "_")
+                alert("space is not allowed")
+            }
+            else {
+                evt.target.parentElement.querySelector("#err_msg").innerHTML = "";
+
+                signup_status()
+            }
+        })
+
+        dept[dept.length - 1].querySelector("#Dept_Name" + (dept.length - 1)).addEventListener("change", (evt) => {
+            console.log("name");
+            let Nmss = Array.from(document.querySelectorAll("[id^='Dept_Name']"))
+            let valu = evt.target;
+            for (i = 0; i < Nmss.length; i++) {
+                if (Nmss[i] != valu) {
+                    if (Nmss[i].value == valu.value && valu.value.length != 0) {
+                        alert(valu.value + " already added")
+                        valu.value = ""
+                        valu.focus()
+                        break;
+                    }
+                }
+            }
+            if (evt.target.value.includes(" ")) {
+                evt.target.value = evt.target.value.replaceAll(" ", "_")
+
+                alert("space is not allowed")
+            }
+        }
+        )
+        dept[dept.length - 1].querySelector("#Dept_Username" + (dept.length - 1)).addEventListener("change", (evt) => {
+            console.log("user");
+            let Nmss1 = document.querySelectorAll("[id^='Dept_Username']")
+            let valu1 = evt.target;
+            for (i = 0; i < Nmss1.length; i++) {
+                if (Nmss1[i] != valu1) {
+                    if (Nmss1[i].value == valu1.value && valu1.value.length != 0) {
+                        alert(valu1.value + " already added")
+                        valu1.value = ""
+                        valu1.focus()
+                        break;
+                    }
+                }
+            }
+            if (evt.target.value.includes(" ")) {
+                evt.target.value = evt.target.value.replaceAll(" ", "_")
+
+                alert("space is not allowed")
+            }
+        }
+        )
+    }
+    for (i = 0; i < inp.length; i++) {
+        inp[i].addEventListener("change", (value) => {
+
+            err = {
+                Username: {
+                    character: 4,
+                    msg: "username must have has 4 character"
+                },
+                Pin: {
+                    character: 6,
+                    msg: "pin always has 6 digit"
+                },
+                Password: {
+                    character: 8,
+                    msg: "password need minimum 8 character",
+                    msg1: "password need  to be strong with uppercase and lowercase and digit"
+                },
+                Password2: {
+                    character: 8,
+                    msg: "password need minimum 8 character",
+                    msg1: "password does not match"
+                },
+            }
+            ids = Object.keys(err);
+            val = value.target
+
+            if (val.id != "desc" && val.id != "Vision" && val.id != "Mission" && val.id != "Country" && val.id != "State" && val.id != "City") {
+                if (val.value.includes(" ")) {
+                    val.value = val.value.replaceAll(" ", "_")
+
+                    alert("space is not allowed")
+                }
+            }
+            if (val.id == "Dept_password0") {
+                if (val.value.length < 8 && val.value.length != 0) {
+                    val.parentElement.querySelector("#err_msg").innerHTML = "password must has minimum 8 charecter"
+                    signup_status()
+                }
+                else {
+                    val.parentElement.querySelector("#err_msg").innerHTML = ""
+                    signup_status()
+                }
+            }
+            if (val.id == "Dept_Username0") {
+                let NmssU = document.querySelectorAll("[id^='Dept_Username']")
+                let valuU = val;
+                for (i = 0; i < NmssU.length; i++) {
+                    if (NmssU[i] != valuU) {
+                        if (NmssU[i].value == valuU.value && valuU.value.length != 0) {
+                            alert("username " + valuU.value + " already taken")
+                            valuU.value = ""
+                            valuU.focus()
+                            break;
+                        }
+                    }
+                }
+            }
+            if (val.id == "Dept_Name0") {
+                let Nmss = document.querySelectorAll("[id^='Dept_Name']")
+                let valu = val;
+                for (i = 0; i < Nmss.length; i++) {
+                    if (Nmss[i] != valu) {
+                        if (Nmss[i].value == valu.value && valu.value.length != 0) {
+                            alert("department " + valu.value + " already added")
+                            valu.value = ""
+                            valu.focus()
+                            break;
+                        }
+                    }
+                }
+            }
+            ids.forEach(element => {
+                if (val.id == element) {
+                    if (element == "Password") {
+
+                        inp[inp.length - 1].value = ""
+                        inp[inp.length - 1].parentElement.querySelector("#err_msg").innerHTML = ""
+                        signup_status()
+                    }
+                    if (val.value.length < err[element].character && val.value.length != 0) {
+                        val.parentElement.querySelector("#err_msg").innerHTML = err[element].msg
+                        signup_status()
+                    }
+                    else {
+                        val.parentElement.querySelector("#err_msg").innerHTML = "";
+
+
+                        if (val.id == "Password") {
+
+                            if (!(val.value.search('[0-9]') > -1 && val.value.search('[a-z]') > -1 && val.value.search('[A-Z]') > -1) && val.value.length != 0) {
+
+                                val.parentElement.querySelector("#err_msg").innerHTML = err[element].msg1
+                                signup_status()
+                            }
+                            else
+                                signup_status()
+
+                        }
+                        else if (val.id == "Password2") {
+
+                            if (inp[inp.length - 2].value == "" && val.value.length != 0) {
+                                val.parentElement.querySelector("#err_msg").innerHTML = "enter password properly before re_typing"
+
+                                signup_status()
+                            }
+                            else if (inp[inp.length - 1].value != inp[inp.length - 2].value && val.value.length != 0) {
+
+                                val.parentElement.querySelector("#err_msg").innerHTML = err[element].msg1
+
+                                signup_status()
+                            }
+                            else {
+                                val.parentElement.querySelector("#err_msg").innerHTML = "";
+                                signup_status()
+                            }
+                        }
+                        else {
+                            signup_status()
+                        }
+                    }
+                }
+            });
+        }
+        )
+    }
+    signup_btn = document.getElementById("signup_btn")
+    let add = document.getElementById("add_btn")
+    let sub = document.getElementById("sub_btn")
+
+    var content = '\n                            <div class="form-row  dept">\n                                <div class="form-group col-md-2">\n                                    <label>NO:</label>\n                                    <input type="number" class="form-control No" name="No" id="No" value=1 disabled="">\n                                </div>\n                                <div class="form-group col-md-4 ">\n                                    <label>Department </label>\n                                    <input type="text" class="form-control inp" id="Dept_Name" name="Dept_Name" placeholder="Department Name">\n                                        <small id="err_msg" class="text-align-center"></small>\n                                </div>\n                                <div class="form-group col-md-4 ">\n                                    <label>UserName</label>\n                                    <input type="text" class="form-control inp" id="Dept_Username" name="Dept_Username" placeholder="UserName of Incharge">\n                                        <small id="err_msg" class="text-align-center"></small>\n                                </div>\n                                <div class="form-group col-md-2 ">\n                                    <label>Password</label>\n                                    <input type="password" class="form-control inp" id="Dept_password" name="Dept_password" placeholder="Password">\n                                        <small id="err_msg" class="text-align-center"></small>\n                                </div>\n                            </div>\n\n'
+
+    add.addEventListener('click', (event) => {
+        let prnt = document.getElementsByClassName("prnt")[0]
+        event.preventDefault();
+        element = document.createElement("div")
+        element.innerHTML = content
+        prnt.appendChild(element)
+        dept = document.querySelectorAll(".dept")
+        dept[dept.length - 1].querySelector("#No").value = dept.length
+        dept[dept.length - 1].querySelector("#Dept_password").name += dept.length - 1
+        dept[dept.length - 1].querySelector("#Dept_password").id += dept.length - 1
+        f1 = dept[dept.length - 1].querySelector("#Dept_Name").name += dept.length - 1;
+        f1 = dept[dept.length - 1].querySelector("#Dept_Name").id += dept.length - 1;
+        f2 = dept[dept.length - 1].querySelector("#Dept_Username").name += dept.length - 1;
+        f2 = dept[dept.length - 1].querySelector("#Dept_Username").id += dept.length - 1;
+
+        set_evt(dept);
+    })
+    sub.addEventListener("click", (event) => {
+        event.preventDefault();
+        let dept = document.getElementsByClassName("dept")
+        dept_len = dept.length;
+        if (dept_len == 1)
+            alert("minimum one department need")
+        else {
+            dept[dept_len - 1].remove()
+            signup_status()
+        }
+    })
+    email.addEventListener("change", () => {
+        val = email.value
+        if (val.slice(val.indexOf("@") + 1) != "gmail.com" && val.length != 0) {
+            email.parentElement.querySelector("#err_msg").innerHTML = "enter valid gmail address"
+            signup_status()
+        }
+        else {
+            email.parentElement.querySelector("#err_msg").innerHTML = ""
+            signup_status()
+        }
+    })
+    signup.addEventListener("click", (evt) => {
+        evt.preventDefault()
+
+        box = document.getElementsByClassName("inp")
+        img = document.getElementById("image")
+        for (i = 0; i < box.length; i++) {
+            if (box[i].value.trim() == "") {
+                // evt.preventDefault()
+                alert("all field are required")
+                box[i].focus()
+                break;
+            }
+        }
+        console.log(i);
+        if (i == box.length) {
+            if (img.files.length == 0) {
+                evt.preventDefault()
+                alert("image is required")
+                img.focus()
+            }
+            else {
+                form = document.getElementById("platform_form")
+                f_data = new FormData(form)
+
+                $.ajax({
+                    url: "/Create_platform",
+                    data: f_data,
+                    method: "post",
+                    success: (cb) => {
+                        if (cb.status) {
+                            alert(cb.status)
+                        }
+                        else {
+
+                            alert("platform successfully created")
+                            window.location.href = "http://localhost:5000/principal/" + cb;
+                        }
+                    }, contentType: false,
+                    processData: false,
+                })
+            }
+        }
+    })
+
+
+</script>
+<style>
+    .content {
+        min-height: 100vh;
+        background: linear-gradient(to right, rgba(221, 203, 203, 0.5), rgba(174, 174, 214, 0.8))
+    }
+
+    form {
+        opacity: .85;
+        border-width: 2rem;
+    }
+
+    .form-control {
+        border: .2rem solid red;
+    }
+
+    label {
+        font-weight: bold;
+        font-style: oblique;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+        font-size: .7rem;
+    }
+
+    #err_msg {
+        width: 100%;
+        display: block;
+        text-align: center;
+        color: red;
+        font-style: italic;
+        font-size: .8rem;
+    }
+</style>

@@ -1,0 +1,70 @@
+<section id="review_body">
+    <div class="container">
+        <div class="row">
+            <table class="table">
+                <thead>
+                    <tr>                        
+                        <th  scope="col" class="i1 "> <div>Mobile</div></th>
+                        <th scope="col" class="i1" ><div>Name</div></th>
+                        <th scope="col" class="i2"><div>Review</div></th>
+                        <th scope="col" class=""><div>Image</div></th>
+                    </tr>
+                </thead>
+             
+                <tbody>                                    
+                    <% for(let i=0;i<content.length;i++) { %>
+                    <tr>    
+                        <td class="i1"><div><%=content[i].mobile%></div></td>                    
+                        <td class="i1"><div><%=content[i].name %></div></td>                    
+                        <td class="i2"><div><%=content[i].suggestion%></div></td>                                         
+                        <td class="i3"><div>
+                            <%for(let j=1;j< content[i].image_count+1;j++) {%>                            
+                            <img src="images/suggestion/<%=content[i]._id%>_<%=j%>.jpg" alt="not" id="review_img">                        
+                            <%}%>                        
+                        </div>
+                         </td>                        
+                    </tr>
+                    <%} %>                 
+                </tbody>
+            </table>
+        </div> 
+    </div> 
+
+    <div id="display">
+<img src="" alt="ww" srcset="" width id="view_img">       
+    </div>
+</section>
+
+<style>
+    table{         
+        margin: 7vh  0px;
+    }
+   table  div{
+       max-height: 25vh;
+       max-width: 30vw;
+       overflow: auto;
+       word-wrap: break-word;
+       /* color: blue; */
+       /* display: block; */     
+   }
+#review_img{
+    max-width: 100%; 
+    padding: .2rem 0rem; 
+}
+   #view_img{
+    position: absolute;       
+       max-width: 70vw;
+       max-height: 70vh;
+       transform: translate(-50%,-50%);
+       top:50%;
+       left: 50%;
+        z-index: 5; 
+        display: none;
+   
+   }
+
+</style>
+
+<script>
+
+</script>

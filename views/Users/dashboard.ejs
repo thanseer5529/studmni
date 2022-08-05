@@ -1,0 +1,96 @@
+<section id="body_content">
+    <h1 class="text-center m-3 bg-info rounded p-3" id="head">DASHBOARD</h1>
+
+    <div class="container">
+
+        <h2 class=" d-flex justify-content-center " id="Insti_name">      
+              <%=data.plat%> >> <%=data.dept%> >> <%=data.user%>
+        </h2>
+
+
+        <div id="inbox" class="col-md-12   m-4">
+
+
+
+            <div class="border border-secondary p-4" id="Dept_form">
+                <%for(let i=data.dash_smg.length-1;i>=0;i--) {%>
+
+                    <div class="border border-warning p-4 m-2" id="Dept_form">
+
+                        <div class="card m-2 ">
+                            <% if(data.dash_smg[i].image_name) {%>
+
+                                <a href="http://localhost:5000/dash_file/candidate/<%=data.dash_smg[i].image_name%>" download
+                                    style="display: inline-block;">
+                                    <!-- <img src="http://localhost:5000/images/download.png" alt="" srcset=""> -->
+                                    <br>
+                                    <%=data.dash_smg[i].image_name%>
+                                </a>
+                                <%}%>
+                                    <div class="card-body">
+                                        <h5 class="card-title  d-flex justify-content-center ">
+                                           Title:<%=data.dash_smg[i].msg_title%>
+                                        </h5>
+                                        <p class="card-text"> FROM:HOD
+                                        </p>
+                                        <p class="card-text">
+                                            Message :<%=data.dash_smg[i].dash_msg%>
+                                        </p>
+                                    </div>
+                        </div>
+                    </div>
+
+                    <%}%>
+                        <a href="#body_content" style="text-decoration: none; display: inline-block" ;>
+                            <button class="btn btn-info d-flex mb-2 ">^</button>
+                        </a>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<style>
+    .chat_content {
+
+        background: rgb(59, 104, 69);
+    }
+
+    /* .chat_heading {
+        height: 5vh;
+        background: rgb(192, 192, 154);
+    } */
+
+
+    #chat_area {
+        border: 2px solid grey;
+        max-height: 70vh;
+        height: 70vh;
+        overflow: auto;
+
+
+    }
+
+    #body_content {
+        margin: 5vh;
+        min-height: 85vh;
+
+    }
+
+    #dash_msg {
+        width: 100%;
+
+    }
+
+    #img {
+        height: 50%;
+    }
+
+    #dl {
+        width: 100px;
+        height: 100px;
+        background: red;
+    }
+</style>
+
+    
